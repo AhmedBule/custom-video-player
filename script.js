@@ -29,7 +29,7 @@ function updatePlayIcon() {
 //Update progress/timestamp
 
 function updateProgress() {
-    return true
+    progress.value = (video.currentTime / video.duration) * 100;
 }
 
 // Set video time to progress
@@ -39,7 +39,8 @@ function setVideoProgress() {
 
 // Stop function 
 function stopVideo() {
-    return true
+    video.currentTime = 0;
+    video.pause();
 }
 
 // We will have a bunch of event listeners 
@@ -47,7 +48,7 @@ function stopVideo() {
 video.addEventListener('click', toggleVideoStatus);
 video.addEventListener('pause', updatePlayIcon);
 video.addEventListener('play', updatePlayIcon);
-video.addEventListener('timestamp', updateProgress);
+video.addEventListener('timeupdate', updateProgress);
 
 play.addEventListener('click', toggleVideoStatus);
 
